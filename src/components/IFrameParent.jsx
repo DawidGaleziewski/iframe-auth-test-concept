@@ -8,7 +8,7 @@ export const IframeParent = () => {
   const sendMessage = () => {
     if (!iFrameRef.current) return;
     iFrameRef.current.contentWindow.postMessage(
-      "Hello son!",
+      {type: 'redirect', payload: 'http://localhost:8080/first-chain-1'},
       "http://localhost:3000"
     );
   };
@@ -16,7 +16,8 @@ export const IframeParent = () => {
   // listening for data from iframe
   useEffect(() => {
     window.addEventListener("message", function (e) {
-      if (e.origin !== "http://localhost:3000") return;
+      // if (e.origin !== "http://localhost:3000") return;
+      console.log('recived data from iframe: ', e.data)
       setRecievedMessage("Got this message from child: " + e.data);
     });
   }, []);
@@ -29,7 +30,7 @@ export const IframeParent = () => {
           sendMessage();
         }}
       >
-        Send message to child
+        get access token
       </button>
 
       <br />
@@ -37,7 +38,7 @@ export const IframeParent = () => {
 
       <iframe
         ref={iFrameRef}
-        src="http://localhost:8080/first-chain-1"
+        src="http://localhost:3000/iframe-child/"
         width="600"
         height="300"
         title="Child iframe"
