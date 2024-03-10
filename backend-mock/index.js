@@ -14,7 +14,7 @@ app.get('/first-chain-2', (req, res) => {
 
 app.get('/first-chain-3', (req, res) => {
     console.log('running /first-chain-3')
-    res.redirect('http://localhost?token=hash-1234');
+    res.redirect('http://localhost:3000/iframe-child?token=hash-1234');
 })
 
 app.listen(port, () => {
