@@ -4,6 +4,7 @@ export const IframeParent = () => {
   const iFrameRef = useRef(null);
   const [recievedMessage, setRecievedMessage] = useState("");
 
+  // sending data to inframe
   const sendMessage = () => {
     if (!iFrameRef.current) return;
     iFrameRef.current.contentWindow.postMessage(
@@ -12,6 +13,7 @@ export const IframeParent = () => {
     );
   };
 
+  // listening for data from iframe
   useEffect(() => {
     window.addEventListener("message", function (e) {
       if (e.origin !== "http://localhost:3000") return;
@@ -35,7 +37,7 @@ export const IframeParent = () => {
 
       <iframe
         ref={iFrameRef}
-        src="/iframe-child/"
+        src="http://localhost:8080/first-chain-1"
         width="600"
         height="300"
         title="Child iframe"
