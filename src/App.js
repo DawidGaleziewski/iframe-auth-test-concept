@@ -1,33 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 
-import { BrowserRouter, Route, Routes, createBrowserRouter,
+import { createBrowserRouter,
   RouterProvider, } from "react-router-dom";
 import { IframeParent } from "./components/IFrameParent";
 import { IframeChild } from "./components/IFrameChild";
-import { WindowParent } from "./components/WindowParent";
-import { WindowChild } from "./components/WindowChild";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <div>Hello world!</div>,
-  },
-  {
-    path: '/iframe/',
+    path: '/',
     element:  <IframeParent />
   },
   {
     path: '/iframe-child/',
     element: <IframeChild />
-  },
-  {
-    path: '/window/',
-    element: <WindowParent />
-  }, 
-  {
-    path: "/window-child/",
-    element: <WindowChild />
   }
 ]);
 
